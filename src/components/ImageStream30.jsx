@@ -16,6 +16,7 @@ export default function ImageStream30() {
   const streamRef = useRef(null);
   const readerRef = useRef(null);
   const stopFlagRef = useRef(false);
+  const terminalRef = useRef(null);
 
   // typing buffer
   const pendingRef = useRef("");
@@ -37,6 +38,12 @@ export default function ImageStream30() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // NEW: keep terminal auto-scrolled to latest text
+  useEffect(() => {
+    const el = terminalRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [typed]);
 
   const connectWS = () =>
     new Promise((resolve, reject) => {
@@ -231,7 +238,7 @@ export default function ImageStream30() {
 
       <div style={{ flex: 1, minWidth: 280 }}>
         <div className="badge">Server text (typing)</div>
-        <div className="terminal" style={{ marginTop: 8 }}>
+        <div className="terminal" style={{ marginTop: 8 }} ref={terminalRef}>
           {typed}
           <span className="caret">▎</span>
         </div>

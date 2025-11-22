@@ -7,7 +7,24 @@ h1 { margin-bottom: 24px; font-size: 28px; }
 .row { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
 .badge { display: inline-block; padding: 4px 8px; border-radius: 999px; background:#19202a; border:1px solid #2a3440; color:#cbd5e1; font-size: 12px; }
 .video { border-radius: 10px; background: #000; border: 1px solid #1b222b; }
-.terminal { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; background:#0e1318; border:1px solid #1c2430; border-radius:10px; padding:10px; min-height:64px; }
+.terminal {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  background: #0e1318;
+  border: 1px solid #1c2430;
+  border-radius: 10px;
+  padding: 16px;
+
+  /* IMPORTANT FIX */
+  max-height: 160px;      /* terminal will not expand */
+  overflow-y: auto;        /* scroll when text increases */
+  overflow-x: hidden;      /* no horizontal scroll */
+
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 .img { max-width: 340px; border-radius: 10px; border:1px solid #1c2430; }
 .caret { opacity:.75; animation: blink 1s step-end infinite; }
 @keyframes blink { 50% { opacity: 0; } }
