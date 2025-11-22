@@ -1,0 +1,13 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: #0b0d10; color: #e9eef4; }
+.app { max-width: 980px; margin: 32px auto; padding: 0 16px; }
+h1 { margin-bottom: 24px; font-size: 28px; }
+.card { background: #12161b; border: 1px solid #222a33; border-radius: 14px; padding: 16px; margin-bottom: 20px; }
+.muted { color: #a7b1bd; margin-top: 0; }
+.row { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+.badge { display: inline-block; padding: 4px 8px; border-radius: 999px; background:#19202a; border:1px solid #2a3440; color:#cbd5e1; font-size: 12px; }
+.video { border-radius: 10px; background: #000; border: 1px solid #1b222b; }
+.terminal { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; background:#0e1318; border:1px solid #1c2430; border-radius:10px; padding:10px; min-height:64px; }
+.img { max-width: 340px; border-radius: 10px; border:1px solid #1c2430; }
+.caret { opacity:.75; animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
