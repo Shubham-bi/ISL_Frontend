@@ -22,6 +22,16 @@ export default function ImageStream30() {
   const pendingRef = useRef("");
   const typerRef = useRef(null);
 
+  const speak = (text) => {
+  if (!text) return;
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.lang = "en-IN"; // or hi-IN
+  speech.rate = 1.8;     // Controls how fast the text is spoken (1 is normal speed, higher = faster, lower = slower)
+speech.pitch = 1;      // Controls the pitch of the voice (1 is normal pitch, higher = sharper/child-like, lower = deeper)
+  speechSynthesis.speak(speech);
+};
+
+
   useEffect(() => {
     // typewriter at ~60Hz
     typerRef.current = setInterval(() => {
@@ -58,15 +68,20 @@ export default function ImageStream30() {
         setWsStatus("error");
         reject(e);
       };
+
       ws.onmessage = (e) => {
-        try {
-          const raw = typeof e.data === "string" ? e.data : new TextDecoder().decode(e.data);
-          const msg = JSON.parse(raw);
-          if (msg.delta) pendingRef.current += msg.delta;
-        } catch {
-          /* ignore non-JSON */
-        }
-      };
+  try {
+    const raw = typeof e.data === "string" ? e.data : new TextDecoder().decode(e.data);
+    const msg = JSON.parse(raw);
+    if (msg.delta) {
+      pendingRef.current += msg.delta;
+      speak(msg.delta);  // <----- add this
+    }
+  } catch {
+    /* ignore */
+  }
+};
+
     });
 
   async function startCapture() {
